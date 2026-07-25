@@ -14,13 +14,18 @@ import { Student } from './student/student.model';
   SequelizeModule.forRoot({
   dialect: 'mysql',
   host: process.env.DB_HOST,
-  port: parseInt(process.env.DB_PORT || '3306'),
+  port: Number(process.env.DB_PORT),
   username: process.env.DB_USER,
   password: process.env.DB_PASS,
   database: process.env.DB_NAME,
-  models: [Student],
   autoLoadModels: true,
   synchronize: true,
+  dialectOptions: {
+    ssl: {
+      require: true,
+      rejectUnauthorized: false,
+    },
+  },
 }),
   StudentModule],
   controllers: [AppController],
