@@ -7,18 +7,27 @@ import {
   AutoIncrement
 } from 'sequelize-typescript';
 
+interface StudentAttributes {
+  id: number;
+  name: string;
+  age: number;
+  course: string;
+}
+
 @Table
-export class Student extends Model {
+export class Student extends Model<StudentAttributes> {
 
   @PrimaryKey
   @AutoIncrement
-  
+  @Column(DataType.INTEGER)
+  declare id: number;
+
   @Column(DataType.STRING)
-  name: string;
+  declare name: string;
 
   @Column(DataType.INTEGER)
-  age: number;
+  declare age: number;
 
   @Column(DataType.STRING)
-  course: string;
+  declare course: string;
 }
